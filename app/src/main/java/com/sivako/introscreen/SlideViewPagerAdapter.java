@@ -1,9 +1,11 @@
 package com.sivako.introscreen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,6 +47,31 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         TextView title = view.findViewById(R.id.titleText);
         TextView desc = view.findViewById(R.id.desc);
 
+        Button btnGetStarted = view.findViewById(R.id.btnGetStarted);
+
+        btnGetStarted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SlideActivity.viewPager.setCurrentItem(position+1);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SlideActivity.viewPager.setCurrentItem(position-1);
+            }
+        });
+
         switch (position) {
             case 0:
                 logo.setImageResource(R.drawable.dividebuy_nohidden_fees);
@@ -63,7 +90,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 indicatorSelector2.setImageResource(R.drawable.unselected);
                 indicatorSelector3.setImageResource(R.drawable.selected);
 
-                title.setText("Spread the cost by paying in monthly instalments");
+                title.setText("Spread the cost");
                 desc.setText("Spread the cost of your order easily in monthly instalments between 2 and 12 months.");
 
                 break;
