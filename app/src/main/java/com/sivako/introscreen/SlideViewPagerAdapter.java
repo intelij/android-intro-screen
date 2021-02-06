@@ -45,6 +45,41 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         TextView title = view.findViewById(R.id.titleText);
         TextView desc = view.findViewById(R.id.desc);
 
+        switch (position) {
+            case 0:
+                logo.setImageResource(R.drawable.dividebuy_nohidden_fees);
+                indicatorSelector1.setImageResource(R.drawable.selected);
+                indicatorSelector2.setImageResource(R.drawable.unselected);
+                indicatorSelector3.setImageResource(R.drawable.unselected);
+
+                title.setText("There\'s no APR to pay");
+                desc.setText("Every order is entirely interest free, no matter the basket value or term length.");
+
+                back.setVisibility(View.GONE);
+                break;
+            case 1:
+                logo.setImageResource(R.drawable.dividebuy_spreadthe_cost);
+                indicatorSelector1.setImageResource(R.drawable.unselected);
+                indicatorSelector2.setImageResource(R.drawable.unselected);
+                indicatorSelector3.setImageResource(R.drawable.selected);
+
+                title.setText("Spread the cost by paying in monthly instalments");
+                desc.setText("Spread the cost of your order easily in monthly instalments between 2 and 12 months.");
+
+                break;
+            case 2:
+                logo.setImageResource(R.drawable.dividebuy_finance_60sec);
+                indicatorSelector1.setImageResource(R.drawable.unselected);
+                indicatorSelector2.setImageResource(R.drawable.selected);
+                indicatorSelector3.setImageResource(R.drawable.unselected);
+
+                title.setText("Quick & easy application");
+                desc.setText("Instant decision and a 60 second application, you can spread the cost of your order in a few simple steps.");
+
+                next.setVisibility(View.GONE);
+                break;
+        }
+
         container.addView(view);
         return view;
     }
